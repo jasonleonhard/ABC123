@@ -9,8 +9,17 @@
 </head>
 <body class="container">
 
+<!-- Devise: 3. Ensure you have flash messages in app/views/layouts/application.html.erb. -->
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  
+  <%= link_to "Sign Up", new_user_registration_path, :class => "btn btn-xs btn-default" %>
+  <%= link_to "Sign In", new_user_session_path, :class => "btn btn-xs btn-default" %>
+
   <%= yield %>
   <!-- yield allows index.html.erb to render -->
 
 </body>
+
+
 </html>

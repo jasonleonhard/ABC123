@@ -1,4 +1,32 @@
 <h1>Listing articles</h1>
+
+<!-- option 3 -->
+<table>
+  <tr>
+    <td><b>Title</b></td>
+    <td><b>Text</b></td>
+    <td><b>User</b></td>
+    <td colspan="3"></td>
+  </tr>
+ 
+  <% @articles.each do |article| %>
+    <tr>
+      <td><%= article.title %></td>
+      <td><%= article.text %></td>
+      <!-- <td>< % = article.user % ></td> -->
+      <!-- <td>< % = article.user.email % ></td> -->
+      <td class="btn btn-default btn-xs"><%= link_to 'Show', article_path(article) %></td>
+      <!-- only show delete if you created the article, using a devise helper -->
+      <% if article.user == current_user %> <!-- < % if user_signed_in? % > -->
+        <td class="btn btn-default btn-xs"><%= link_to 'Edit', edit_article_path(article) %></td>
+        <td class="btn btn-default btn-xs"><%= link_to 'Destroy', article_path(article),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+
  
 <!-- option 1 -->
 <!-- <table>
@@ -28,27 +56,6 @@
   < % end %>
 </table>
  -->
-
-<!-- option 3 -->
-<table>
-  <tr>
-    <td><b>Title</b></td>
-    <td><b>Text</b></td>
-    <td colspan="3"></td>
-  </tr>
- 
-  <% @articles.each do |article| %>
-    <tr>
-      <td><%= article.title %></td>
-      <td><%= article.text %></td>
-      <td class="btn btn-default btn-xs"><%= link_to 'Show', article_path(article) %></td>
-      <td class="btn btn-default btn-xs"><%= link_to 'Edit', edit_article_path(article) %></td>
-      <td class="btn btn-default btn-xs"><%= link_to 'Destroy', article_path(article),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-  <% end %>
-</table>
 
 
 <%= link_to 'New', new_article_path %>
